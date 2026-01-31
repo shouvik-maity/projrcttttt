@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Pratyusha ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Segoe UI,sans-serif;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+  overflow:hidden;
+}
+
+.screen{
+  display:none;
+  height:100vh;
+  width:100vw;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:16px;
+}
+.active{display:flex;}
+
+input,button{
+  padding:12px 18px;
+  font-size:18px;
+  border:none;
+  border-radius:22px;
+  margin-top:14px;
+}
+
+button{
+  background:#ff4d6d;
+  color:#fff;
+  cursor:pointer;
+}
+
+.game-area{
+  position:relative;
+  width:100%;
+  height:60vh;
+  overflow:hidden;
+}
+
+.heart{
+  position:absolute;
+  font-size:30px;
+  cursor:pointer;
+  animation:fall 5s linear forwards;
+}
+
+@keyframes fall{
+  from{top:-50px;}
+  to{top:110%;}
+}
+
+.pop{
+  position:fixed;
+  font-size:32px;
+  animation:pop 1.4s forwards;
+  pointer-events:none;
+}
+
+@keyframes pop{
+  0%{transform:scale(0);opacity:1;}
+  100%{transform:scale(2);opacity:0;}
+}
+
+.photos img{
+  width:90%;
+  max-width:320px;
+  border-radius:20px;
+  margin:10px 0;
+}
+
+.letter-box{
+  background:#fff;
+  border-radius:22px;
+  padding:20px;
+  max-width:540px;
+  height:65vh;
+  overflow-y:auto;
+  text-align:left;
+}
+
+.scoreboard{
+  font-size:22px;
+  font-weight:bold;
+  margin:12px;
+  text-align:center;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,80px);
+  gap:18px;
+  justify-content:center;
+}
+
+.tulip{
+  font-size:42px;
+  cursor:pointer;
+}
+
+.counter{
+  font-size:20px;
+  margin-bottom:15px;
+  font-weight:bold;
+}
+
+.shake{
+  animation:shakeBox 0.35s;
+}
+
+@keyframes shakeBox{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  50%{transform:translateX(5px)}
+  75%{transform:translateX(-5px)}
+  100%{transform:translateX(0)}
+}
+
+.confetti{
+  position:fixed;
+  top:-10px;
+  font-size:18px;
+  animation:confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PIN -->
+<div class="screen active" id="pin">
+  <h2>Enter Secret Code 🧿</h2>
+  <input type="password" id="code" placeholder="****">
+  <button onclick="checkPin()">Unlock ❤️</button>
+</div>
+
+<div class="screen" id="letsPlay">
+  <h2>Let's play a game! 🎮</h2>
+  <button onclick="show('game1Instructions')">Continue 🌷</button>
+</div>
+
+<div class="screen" id="game1Instructions">
+  <h2>Game 1 Instructions 💓</h2>
+  <p>
+    Catch hearts fast 💕<br><br>
+    Each heart = 20 points<br>
+    Score 200 to win ❤️
+  </p>
+  <button onclick="startGame1()">Start Game 🌷</button>
+</div>
+
+<div class="screen" id="game1">
+  <h2>Catch the Hearts 💓</h2>
+  <div class="scoreboard" id="heartScore">Score: 0</div>
+  <div class="game-area" id="gameArea"></div>
+  <div id="winMessage" style="display:none;font-weight:bold;text-align:center;">
+    U won my heart ❤️
+  </div>
+  <button id="playNextBtn" style="display:none;" onclick="show('game2Instructions')">
+    One More Game 🌷
+  </button>
+</div>
+
+<div class="screen" id="game2Instructions">
+  <h2>Game 2 Instructions 🌷💍</h2>
+  <p>
+    Rings are hidden inside boxes 🎁<br><br>
+    Shake → open → find 3 rings 💍
+  </p>
+  <button onclick="startGame2()">Start Game 🌸</button>
+</div>
+
+<div class="screen" id="game2">
+  <div class="counter" id="ringCount">Rings Found: 0 / 3</div>
+  <div class="grid" id="tulipGrid"></div>
+</div>
+
+<!-- LOVE LETTER -->
+<div class="screen" id="loveLetter">
+  <div class="letter-box">
+❤️❤️❤️❤️❤️🧿<br><br>
+
+<b>Tumi Amar Pratyusha</b><br><br>
+
+Ami tomake niye onek gorbito bondh kori ...<br>
+Tomar qualities, tomar bhabna, tomar strength, tomar bishash — shob kichu amake protidin notun kore tomake bhalobashte shikhay 💫<br><br>
+
+Tumi jebabe nijer jaygay dariye thako, jebhabe shob kichu nijer moton kore handle koro — Tomake ar eka sob kichu handle korte hobe na ...<br>
+Ami achiii.. ami thakboo... So aksathe sob kichu handle korbo ...<br>
+Tomar eii soktii amar chokhe tumi ta ke aro beshi shundor kore tule 🌷<br><br>
+
+Ami tomake protiti second ⏳, protiti minute 💞, protiti ghonta ⏰, protiti din ☀️, protiti mash 🌙, aaj, agami mash, agami bochor...<br>
+ebong chirodin, amar shesh nisash porjonto bhalobashi ❤️♾️<br>
+Eta shudhu kotha na, eta amar moner shobcheye gobhir shotti 🤍<br><br>
+
+Amra ekshathe onek memories toiri korechi 📸💭 —<br>
+kichu hashi bhora 😄, kichu chupchap 🤍, kichu emotional 🥹, kichu shudhu amader nijer 💑<br>
+Prottekta memory amar moner moddhe khub jotno kore rakha 💖<br>
+Oi shob muhurto gulo amake bujhiye dey je tumi amar jibone koto ta important 🥰<br><br>
+
+Tumi shudhu amar bhalobasha na 💕,<br>
+tumi amar shanti 🕊️, amar strength 💪, amar inspiration ✨<br>
+Jokhon ami durbol hoye jai, tomar ekta chotto kotha 💓, ekta hashi 😊,<br>
+ba shudhu tomar presence-i amake abar nijeke chinte sahajjo kore tole 🫂❤️<br><br>
+
+Ami tomake aaj ja bhalobashi, kal tar cheyeo beshi bhalobashbo 💞<br>
+Samne aro onek din, onek bochor 🗓️, onek golpo 📖, onek notun memory ✨ amader opekkhay ache...<br>
+ami shob gulo tomari shathei toiri korte chai 🤍💍<br><br>
+
+Tomake niye ami gorbito 💖<br>
+Tomake niye... Tomake peye... ami khubbb khushi 😊<br>
+Tomake peye amar jibonta complete ❤️<br><br>
+
+Ami tomake chirodin, shob shomoy ⏰, shob obosthay 🌍 bhalobeshe jabo 💘<br>
+Till my last breath ❤️<br><br>
+
+❤️❤️❤️❤️❤️❤️❤️❤️
+  </div>
+  <button onclick="show('photoOnly')">Next 📸</button>
+</div>
+
+<div class="screen" id="photoOnly">
+  <h2>Our Memories 📸</h2>
+  <img src="1000098292.jpg">
+  <img src="1000098294.jpg">
+  <img src="1000098293.jpg">
+  <img src="1000098291.jpg">
+  <button onclick="show('foreverQuestion')">Next ❤️</button>
+</div>
+
+<div class="screen" id="foreverQuestion">
+  <div class="letter-box" style="text-align:center">
+    <h2>Will you be mine forever? ♾️❤️</h2>
+    <button id="yesBtn" onclick="finalYes()">YES ❤️</button>
+    <button id="noBtn" onclick="noClicked()">NO 💔</button>
+  </div>
+</div>
+
+<div class="screen" id="finalLove">
+  <div class="letter-box" style="text-align:center">
+    ❤️❤️❤️❤️❤️❤️❤️<br><br>
+    <b>YESSSSSSS I KNEWWWW IT ❤️❤️❤️❤️❤️❤️❤️</b><br><br>
+    I LOVE U INFINITY MUCH 💞💞💞💞💞💞💞💞💞
+  </div>
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function checkPin(){
+  if(code.value==="120805") show('letsPlay');
+  else alert("Wrong code 😢");
+}
+
+function confettiBlast(count=40){
+  for(let i=0;i<count;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.innerHTML="🎉";
+    c.style.left=Math.random()*100+"vw";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+
+let score=0,interval;
+function startGame1(){
+  show('game1');
+  score=0;
+  heartScore.innerText="Score: 0";
+  gameArea.innerHTML="";
+  interval=setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💓";
+    h.style.left=Math.random()*90+"%";
+    h.onclick=()=>{
+      score+=20;
+      heartScore.innerText="Score: "+score;
+      h.remove();
+      if(score>=200){
+        clearInterval(interval);
+        winMessage.style.display="block";
+        playNextBtn.style.display="block";
+        confettiBlast();
+      }
+    };
+    gameArea.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  },500);
+}
+
+function startGame2(){
+  show('game2');
+  let found=0;
+  ringCount.innerText="Rings Found: 0 / 3";
+  tulipGrid.innerHTML="";
+  let items=[true,true,true,false,false,false,false,false,false].sort(()=>Math.random()-0.5);
+
+  items.forEach(hasRing=>{
+    let box=document.createElement("span");
+    box.className="tulip";
+    box.innerText="🎁";
+    box.onclick=()=>{
+      if(box.dataset.done) return;
+      box.dataset.done=1;
+      box.classList.add("shake");
+      setTimeout(()=>{
+        box.classList.remove("shake");
+        if(hasRing){
+          box.innerText="🌷💍";
+          found++;
+        } else box.innerText="🌷";
+        box.style.opacity=0.5;
+        ringCount.innerText=`Rings Found: ${found} / 3`;
+        if(found===3){
+          confettiBlast();
+          setTimeout(()=>show('loveLetter'),900);
+        }
+      },350);
+    };
+    tulipGrid.appendChild(box);
+  });
+}
+
+function noClicked(){
+  document.getElementById("noBtn").style.display="none";
+}
+
+function finalYes(){
+  show('finalLove');
+  confettiBlast(80);
+}
+</script>
+
+</body>
+</html>
